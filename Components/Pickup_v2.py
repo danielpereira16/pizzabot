@@ -1,9 +1,8 @@
 #Bug - accepts blank input
 
+
+
 print("Please enter the pickup information")
-
-
-
 
 #customer name
 valid = False
@@ -25,4 +24,3 @@ while not valid:
             break
         else:
             print("Sorry this cannot be blank")    
-
