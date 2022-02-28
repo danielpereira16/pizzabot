@@ -23,4 +23,6 @@ while not valid:
             print (customer_details['phone'])
             break
         else:
-            print("Sorry this cannot be blank")    
+            print("Sorry this cannot be blank")
+
+print (customer_details)
