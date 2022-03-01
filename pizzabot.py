@@ -2,8 +2,22 @@
 import random
 from random import randint
 
+#Customer details dictionary
+customer_details = {}
+
 #List of random names
 names = ["Daniel", "Caleb", "Jayden", "Carlos", "Louis", "Keira", "Danett", "Hannah", "Francesca", "Ella" ]
+
+#Validates inputs to check if they are blank
+def not_blank(question):
+    valid = False
+    while not valid:
+        response = input(question)
+        if response != "":
+            return response
+        else:
+            print("This cannot be blank")
+
 
 # Welcome messsage with random name
 def welcome():
@@ -21,14 +35,22 @@ def welcome():
 
 
 # Menu for pick up or delivery
-
+def order_type():
 
 
 
 
 
 # Pick up information - name and phone number
+def pickup():
+    question = ("Please enter your name ")
+    customer_details['name'] = not_blank(question )
+    #print(customer_details['name'])
 
+    question = ("Please enter your phone number ")
+    customer_details['phone'] = not_blank(question)
+    #print(customer_details['phone'])
+    print(customer_details)
 
 
 
@@ -85,6 +107,8 @@ def main():
     Returns: None
     '''
     welcome()
+    order_type()
+    pickup()
 
 
 main()
