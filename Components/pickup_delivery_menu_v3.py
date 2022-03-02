@@ -1,21 +1,29 @@
-# Bugs
-# will only work for valid input "d" and "p"
-# invalid input triggers else statement but program does not ask for input again
+# Menu so that user can choose either pickup or delivery
 
-# Menu so that user can choose either pickup or deliver
+#Bug - need to it so that it only accepts 1 or 2
 
-print ("Do you want your order delivered or are you picking it up")
+print ("Is your order for pickup or delivery")
 
-print ("For delivery enter d")
-print ("For Pickup enter p")
+print ("For pickup please enter 1")
+print ("For delivery please enter 2")
 
-delivery = input()
 
-if delivery == "d":
-    print ("Delivery")
 
-elif delivery == "p":
-    print ("Pickup")
 
-else:
-    print ("That was not a valid input")
+
+while True:
+    try:
+        delivery = int(input("Please enter a number "))
+        if delivery >= 1 and delivery <= 2:
+            if delivery == 1:
+                print ("Pickup")
+                break
+
+            elif delivery == 2:
+                print ("Delivery")
+                break
+        else: 
+            print("Number must be 1 or 2")
+    except ValueError:
+        print("That is not valid number")
+        print("Please enter 1 or 2 ")
