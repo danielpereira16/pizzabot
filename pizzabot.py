@@ -14,6 +14,11 @@ pizza_names = ['Margherita','Pepperoni','Hawaiian','Cheese','Italian','Veggie','
 # list of pizza prices
 pizza_prices = [8.50, 8.50, 8.50, 8.50, 8.50, 8.50, 8.50, 13.50, 13.50, 13.50, 13.50, 13.50]
 
+#list to store ordered pizzas
+order_list = []
+#list to store pizza prices
+order_cost = []
+
 # Customer details dictionary
 customer_details = {}
 
@@ -112,22 +117,39 @@ def menu():
 
 
 # Choose total number of Pizzas - max 5
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Pizza order - from menu - print each pizza ordered with cost
 
-
+def order_pizza():
+    # ask for total number of pizzas for order
+    num_pizzas = 0
+    while True:
+        try:
+            num_pizzas = int(input("How many pizzas do you want to order? "))
+            if num_pizzas >= 1 and num_pizzas <= 5:
+                break
+            else:
+                print("Your order must between 1 and 5")
+        except ValueError:
+            print ("That is not a valid number")
+            print ("Please enter number enter between 1 and 5 ")
+    # Choose pizza from menu
+    for item in range(num_pizzas):
+        while num_pizzas > 0:
+            while True:
+                try:
+                    num_pizzas = int(input("How many pizzas do you want to order? "))
+                    if num_pizzas >= 1 and num_pizzas <= 5:
+                        break
+                    else:
+                        print("Your order must between 1 and 5")
+                except ValueError:
+                    print ("That is not a valid number")
+                    print ("Please enter number enter between 1 and 5 ") 
+        pizza_ordered = int(input())
+        pizza_ordered = pizza_ordered-1
+        order_list.append(pizza_names[pizza_ordered])
+        order_cost.append(pizza_prices[pizza_ordered])    
+        print("{} ${:.2f}" .format(pizza_names[pizza_ordered],pizza_prices[pizza_ordered]))
 
 
 
@@ -161,6 +183,7 @@ def main():
     welcome()
     order_type()
     menu()
+    order_pizza()
     
 
 main()
