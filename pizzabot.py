@@ -49,6 +49,7 @@ def welcome():
 
 #Menu for pickup or delivery
 def order_type():
+    del_pick = ""
     print ("Is your order for pickup or delivery")
     print ("For pickup please enter 1")
     print ("For delivery please enter 2")
@@ -59,17 +60,19 @@ def order_type():
                 if delivery == 1:
                     print ("Pickup")
                     pickup_info()
+                    del_pick = "pickup"
                     break
                 elif delivery == 2:
                     print ("Delivery")
                     delivery_info()
+                    del_pick = "delivery"
                     break
             else: 
                 print("Number must be 1 or 2")
         except ValueError:
             print("That is not valid number")
             print("Please enter 1 or 2 ")
-
+    return del_pick
 
 # Pick up information - name and phone number
 def pickup_info():
@@ -137,24 +140,43 @@ def order_pizza():
         while num_pizzas > 0:
             while True:
                 try:
-                    num_pizzas = int(input("How many pizzas do you want to order? "))
-                    if num_pizzas >= 1 and num_pizzas <= 5:
+                    pizza_ordered = int(input("Please choose your pizzas by entering the number from the menu "))
+                    if pizza_ordered >= 1 and pizza_ordered <= 12:
                         break
                     else:
-                        print("Your order must between 1 and 5")
+                        print("Your order must between 1 and 12")
                 except ValueError:
                     print ("That is not a valid number")
-                    print ("Please enter number enter between 1 and 5 ") 
-        pizza_ordered = int(input())
-        pizza_ordered = pizza_ordered-1
-        order_list.append(pizza_names[pizza_ordered])
-        order_cost.append(pizza_prices[pizza_ordered])    
-        print("{} ${:.2f}" .format(pizza_names[pizza_ordered],pizza_prices[pizza_ordered]))
+                    print ("Please enter number enter between 1 and 12 ") 
+            pizza_ordered = pizza_ordered -1
+            order_list.append(pizza_names[pizza_ordered])
+            order_cost.append(pizza_prices[pizza_ordered])    
+            print("{} ${:.2f}" .format(pizza_names[pizza_ordered],pizza_prices[pizza_ordered]))
+            num_pizzas = num_pizzas -1
 
 
 
 # Print order out - including if order is delivering or pick up and names and price of each pizza - total cost including any delivery charge
+def print_order(del_pick):
+    print()
+    total_cost = sum(order_cost)
+    print ("Customer details")
+    if del_pick == "pickup":
+        print ("Your Order is for Pickup")
+        print (f"Customer name: {customer_details['name']} \nCustomer Phone: {customer_details['name']}")
 
+    elif del_pick == "delivery":     
+        print ("Your Order is for Delivery")
+        print (f"Customer name: {customer_details['name']} \nCustomer Phone: {customer_details['name']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+    print ()
+    print ("Order Details")
+    count = 0
+    for item in order_list:
+        print("Ordered: {} Cost ${:.2f}".format(item, order_cost[count]))
+        count = count+1
+    print ()
+    print ("Total Order Cost")
+    print(f"${total_cost:.2f}")
 
 
 
@@ -181,9 +203,11 @@ def main():
     Returns: None
     '''
     welcome()
-    order_type()
+    del_pick = order_type()
     menu()
     order_pizza()
+    print_order(del_pick)
     
+
 
 main()
