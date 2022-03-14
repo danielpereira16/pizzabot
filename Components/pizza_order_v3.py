@@ -38,20 +38,19 @@ def order_pizza():
         while num_pizzas > 0:
             while True:
                 try:
-                    num_pizzas = int(input("How many pizzas do you want to order? "))
-                    if num_pizzas >= 1 and num_pizzas <= 5:
+                    pizza_ordered = int(input("Please choose your pizzas by entering the number from the menu "))
+                    if pizza_ordered >= 1 and pizza_ordered <= 12:
                         break
                     else:
-                        print("Your order must between 1 and 5")
+                        print("Your order must between 1 and 12")
                 except ValueError:
-                    print ("That is not a valid number")
-                    print ("Please enter number enter between 1 and 5 ") 
-        pizza_ordered = int(input())
-        pizza_ordered = pizza_ordered-1
-        order_list.append(pizza_names[pizza_ordered])
-        order_cost.append(pizza_prices[pizza_ordered])    
-        print("{} ${:.2f}" .format(pizza_names[pizza_ordered],pizza_prices[pizza_ordered]))
-
+                    print ("That is not a valid number")   
+                    print ("Please enter number enter between 1 and 12 ") 
+            pizza_ordered = pizza_ordered -1
+            order_list.append(pizza_names[pizza_ordered])
+            order_cost.append(pizza_prices[pizza_ordered])    
+            print("{} ${:.2f}" .format(pizza_names[pizza_ordered],pizza_prices[pizza_ordered]))
+            num_pizzas = num_pizzas-1
 
 menu()
 order_pizza()
